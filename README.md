@@ -8,7 +8,7 @@ Finalize este repo, instale as dependências e inicie o processo de gulp com o s
 
 ```
 > git clone https://github.com/pedrincandido/react-teste-front.git
-> cd ReduxSimpleStarter
+> cd react-teste-front
 > npm install
 > npm start
 ```
