@@ -52,7 +52,7 @@ class LoginPage extends React.Component {
 
     const { email, password } = this.state;
     const { dispatch } = this.props;
-    debugger
+
     if (email && password) {
       dispatch(userActions.login(email, password));
     }
@@ -60,7 +60,7 @@ class LoginPage extends React.Component {
 
 
   render() {
-    const { loggingIn } = this.props;
+    const { loggingIn, alert } = this.props;
     const { email, password, submitted } = this.state;
     return (
       <React.Fragment>
@@ -93,8 +93,8 @@ class LoginPage extends React.Component {
                   onChange={this.handleChange}
                 />
                 {
-                  this.state.alert &&
-                   <div className="help-block" >{this.state.alert.message}</div>
+                  alert &&
+                   <div className="help-block" >{alert.message}</div>
                 }
               </FormControl>
               <Button
@@ -132,8 +132,11 @@ class LoginPage extends React.Component {
 // };
 
 function mapStateToProps(state) {
+  const { alert, authentication } = state;
   const { loggingIn } = state.authentication;
+
   return {
+    alert,
     loggingIn
   };
 }
