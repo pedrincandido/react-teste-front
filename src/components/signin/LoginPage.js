@@ -1,5 +1,6 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -20,8 +21,10 @@ class LoginPage extends React.Component {
     this.state = {
       email: '',
       password: '',
-      submit: false
+      submit: false,
+      loggedIn: false 
     };
+
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,6 +40,14 @@ class LoginPage extends React.Component {
   renderRedirect = () => {
     if (this.state.redirect) {
       return <Redirect to='/register' />
+    }
+  }
+
+  renderRedirectT = () => {
+   
+    this.loggedIn = this.props.loggedIn;
+    if (this.loggedIn) {
+      return <Redirect to='/site' />
     }
   }
 
@@ -63,83 +74,81 @@ class LoginPage extends React.Component {
     const { loggingIn, alert } = this.props;
     const { email, password, submitted } = this.state;
     return (
-      <React.Fragment>
-        <CssBaseline />
-        <main className="layout box-shadow border-center">
-          <Paper className="paper">
-            <Avatar className="avatar">
-              <LockIcon />
-            </Avatar>
-            <Typography variant="headline">Autenticação</Typography>
-            <form id="loginForm" className="form" onSubmit={this.handleSubmit}>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="email">Email Address</InputLabel>
-                <Input
-                  id="email"
-                  name="email"
-                  autoComplete="email"
-                  autoFocus
-                  value={email}
-                  onChange={this.handleChange} />
-              </FormControl>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input
-                  name="password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  value={password}
-                  onChange={this.handleChange}
-                />
-                {
-                  alert &&
-                   <div className="help-block" >{alert.message}</div>
-                }
-              </FormControl>
-              <Button
-                type="submit"
-                fullWidth
-                variant="raised"
-                color="primary"
-                className="button-signin"
-              >
-                Entrar
+      <div className="app">
+        <React.Fragment>
+          <CssBaseline />
+          <main className="layout box-shadow border-center">
+            <Paper className="paper">
+              <Avatar className="avatar">
+                <LockIcon />
+              </Avatar>
+              <Typography variant="headline">Autenticação</Typography>
+              <form id="loginForm" className="form" onSubmit={this.handleSubmit}>
+                <FormControl margin="normal" required fullWidth>
+                  <InputLabel htmlFor="email">Email Address</InputLabel>
+                  <Input
+                    id="email"
+                    name="email"
+                    autoComplete="email"
+                    autoFocus
+                    value={email}
+                    onChange={this.handleChange} />
+                </FormControl>
+                <FormControl margin="normal" required fullWidth>
+                  <InputLabel htmlFor="password">Password</InputLabel>
+                  <Input
+                    name="password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    value={password}
+                    onChange={this.handleChange}
+                  />
+                  {
+                    alert &&
+                    <div className="help-block" >{alert.message}</div>
+                  }
+                </FormControl>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="raised"
+                  color="primary"
+                  className="button-signin"
+                >
+                {this.renderRedirectT()}
+                  Entrar
             </Button>
 
-              <Button
-                type="button"
-                fullWidth
-                variant="raised"
-                color="primary"
-                className="button-signin"
-                onClick={this.setRedirect}
-              >
-                {this.renderRedirect()}
-                Não tem conta? Registre-se
+                <Button
+                  type="button"
+                  fullWidth
+                  variant="raised"
+                  color="primary"
+                  className="button-signin"
+                  onClick={this.setRedirect}
+                >
+                  {this.renderRedirect()}
+                  Não tem conta? Registre-se
             </Button>
-            </form>
-          </Paper>
-        </main>
-      </React.Fragment>
+              </form>
+            </Paper>
+          </main>
+        </React.Fragment>
+      </div>
     );
   }
 
 }
 
-// LoginPage.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
-
 function mapStateToProps(state) {
   const { alert, authentication } = state;
-  const { loggingIn } = state.authentication;
+  const { loggedIn } = state.authentication;
 
   return {
     alert,
-    loggingIn
+    loggedIn
   };
 }
-// export default withStyles(styles)(LoginPage);
 const connectedLoginPage = connect(mapStateToProps)(LoginPage);
 export { connectedLoginPage as LoginPage }; 

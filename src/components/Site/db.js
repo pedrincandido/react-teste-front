@@ -9,17 +9,21 @@ export default class DB {
 
         this.dbPromise = idb.open('myDB', 1, updateDB => {
             const db = updateDB.createObjectStore('tabs', {
-                keyPath: id,
+                keyPath: 'id',
                 autoIncrement: true,
+                // urlSite: '',
+                // userName: '',
+                // email: '',
+                // password: ''
             });
-            db.createIndex('tabId', 'tabId', { unique: false });
+            // db.createIndex('tabId', 'tabId', { unique: false });
             db.createIndex('urlSite', 'urlSite', { unique: false });
             db.createIndex('userName', 'userName', { unique: false });
             db.createIndex('email', 'email', { unique: false });
             db.createIndex('password', 'password', { unique: false });
 
 
-            store.map((item, index) => db.add(item));
+            // store.map((item, index) => db.add(item));
             return db;
         });
 
@@ -63,8 +67,43 @@ export default class DB {
 
     set(val) {
         return this.dbPromise.then(db => {
-            
-        })
+            const tx = db.transaction('tabs', 'readwrite');
+            tx.objectStore('tabs').put(val);
+            tx.objectStore('tabs').getAll();
+
+            return tx.complete;
+        });
+    }
+
+    getData() {
+        this.get('');
+    }
+
+    getAllData() {
+        return this.getAll();
+    }
+
+    setData(userName, userEmail, urlSite, password) {
+        this.set({
+            urlSite: urlSite,
+            userName: userName,
+            email: userEmail,
+            password: password,
+        });
+    }
+
+    setDataUpdate(userName, userEmail, urlSite, password, id) {
+        this.set({
+            urlSite: urlSite,
+            userName: userName,
+            email: userEmail,
+            password: password,
+            id: id
+        });
+    }
+
+    deleteData() {
+        this.delete('Event Three');
     }
 }
 

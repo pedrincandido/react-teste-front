@@ -80,73 +80,75 @@ class RegisterPage extends React.Component {
     const { user, submitted } = this.state;
 
     return (
-      <React.Fragment>
-        <CssBaseline />
-        <main className="layout box-shadow border-center">
-          <Paper className="paper">
-            <Avatar className="avatar">
-              <LockIcon />
-            </Avatar>
-            <Typography variant="headline">Registrar</Typography>
-            <form id="registerForm" className="form" onSubmit={this.handleSubmit}>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="nome">Nome</InputLabel>
-                <Input
-                  id="name"
-                  name="name"
-                  autoComplete="nome"
-                  autoFocus
-                  value={user.name}
-                  onChange={this.handleChange} />
-              </FormControl>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="email">E-mail</InputLabel>
-                <Input
-                  id="email"
-                  name="email"
-                  autoComplete="email"
-                  value={user.email}
-                  onChange={this.handleChange} />
-              </FormControl>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input
-                  name="password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  value={user.password}
-                  onChange={this.handleChange}
-                />
-                {submitted && this.errorPass &&
-                  <div className="help-block">A senha deve conter no mínimo 10 caracteres, dos quais deve possuir no mínimo 1 letra maiúscula, 1
-                  número e 1 caractere especial
+      <div className="app">
+        <React.Fragment>
+          <CssBaseline />
+          <main className="layout box-shadow border-center">
+            <Paper className="paper">
+              <Avatar className="avatar">
+                <LockIcon />
+              </Avatar>
+              <Typography variant="headline">Registrar</Typography>
+              <form id="registerForm" className="form" onSubmit={this.handleSubmit}>
+                <FormControl margin="normal" required fullWidth>
+                  <InputLabel htmlFor="nome">Nome</InputLabel>
+                  <Input
+                    id="name"
+                    name="name"
+                    autoComplete="nome"
+                    autoFocus
+                    value={user.name}
+                    onChange={this.handleChange} />
+                </FormControl>
+                <FormControl margin="normal" required fullWidth>
+                  <InputLabel htmlFor="email">E-mail</InputLabel>
+                  <Input
+                    id="email"
+                    name="email"
+                    autoComplete="email"
+                    value={user.email}
+                    onChange={this.handleChange} />
+                </FormControl>
+                <FormControl margin="normal" required fullWidth>
+                  <InputLabel htmlFor="password">Password</InputLabel>
+                  <Input
+                    name="password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    value={user.password}
+                    onChange={this.handleChange}
+                  />
+                  {submitted && this.errorPass &&
+                    <div className="help-block">A senha deve conter no mínimo 10 caracteres, dos quais deve possuir no mínimo 1 letra maiúscula, 1
+                    número e 1 caractere especial
                   </div>}
-              </FormControl>
-              <Button
-                type="submit"
-                fullWidth
-                variant="raised"
-                color="primary"
-                className="button-signin"
-              >
-                Cadastrar
+                </FormControl>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="raised"
+                  color="primary"
+                  className="button-signin"
+                >
+                  Cadastrar
             </Button>
-              <Button
-                type="button"
-                fullWidth
-                variant="raised"
-                color="primary"
-                className="button-signin"
-                onClick={this.setRedirectBack}
-              >
-                {this.renderRedirectBack()}
-                Voltar
+                <Button
+                  type="button"
+                  fullWidth
+                  variant="raised"
+                  color="primary"
+                  className="button-signin"
+                  onClick={this.setRedirectBack}
+                >
+                  {this.renderRedirectBack()}
+                  Voltar
             </Button>
-            </form>
-          </Paper>
-        </main>
-      </React.Fragment>
+              </form>
+            </Paper>
+          </main>
+        </React.Fragment>
+      </div>
     );
   }
 

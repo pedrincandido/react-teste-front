@@ -39,6 +39,44 @@ body {
     margin-right: 26%;
 }
 
+.appBar {
+    background-color: #576094 !important;
+    position: relative;
+    margin-top: 5px;
+}
+
+.hero-content {
+    max-width: 600;
+    margin: 0 auto;
+}
+
+.hero-buttons {
+
+}
+
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content {
+    flex-grow: 1;
+}
+
+.card-media {
+    padding-top: '56.25%';
+}
+
+.footer {
+
+}
+
+.layout-site {
+    width: auto;
+    padding-top: 20px;
+}
+
 .paper {
     display: flex;
     flex-direction: column;
@@ -106,6 +144,12 @@ body {
     border-color:  #754E7A !important;
 }
 
+.button-register {
+    float: right;
+    margin-top: 10px !important;
+    background-color: #576094 !important;
+}
+
 .button-signin:hover {
     background-color: rgb(66, 26, 71) !important;
 }
@@ -114,4 +158,10 @@ body {
     padding-top: 6px;
     font-size: 13px;
     color: red;
+}
+
+.label {
+    /* background:rgba(0,0,0,0); */
+    -webkit-user-modify: read-write-plaintext-only;
+    border:none;
 }

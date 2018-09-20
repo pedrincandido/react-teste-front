@@ -3,6 +3,7 @@ import { userConstants } from '../_constants';
 import { alertActions } from './';
 import { userService } from '../_services';
 
+
 export const userActions = {
     login,
     register
@@ -16,7 +17,7 @@ function login(email, password) {
             .then(
                 user => {
                     dispatch(success(user));
-                    history.push('/');
+                    history.push('/login');
                 },
                 error => {
                     dispatch(failure(error));
@@ -39,7 +40,7 @@ function register(user) {
             .then(
                 user => {
                     dispatch(success());
-                    history.push('/login');
+                    history.push('/register');
                     dispatch(alertActions.success('Registrado com sucesso'));
                 },
                 error => {

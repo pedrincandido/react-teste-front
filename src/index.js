@@ -4,10 +4,11 @@ import { Provider } from 'react-redux';
 
 import { store } from './_helpers';
 import { App } from './App/App';
+import DB from './components/Site/db'
 
 render(
     <Provider store={store}>
-        <App />
+        <App/>
     </Provider>,
     document.querySelector('.container')
 );
